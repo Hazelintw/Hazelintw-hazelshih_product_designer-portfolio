@@ -1,11 +1,105 @@
+"use client"
+
+import { useState } from "react"
+import MasonryGrid from "@/components/MasonryGrid"
+import { cn } from "@/lib/utils"
+
+/* ── 假資料（之後換成 Notion API） ──────────────────────
+   圖片使用 picsum.photos placeholder，seed 固定讓圖片不每次變動
+   width / height 故意不同，展示瀑布流高度差異
+──────────────────────────────────────────────────────── */
+const ALL_PROJECTS = [
+  {
+    id: "iverson",
+    src: "https://picsum.photos/seed/iverson/800/1067",
+    alt: "Iverson App",
+    href: "/project/iverson",
+    width: 800,
+    height: 1067,
+    category: "app",
+  },
+  {
+    id: "allup",
+    src: "https://picsum.photos/seed/allup/800/600",
+    alt: "allUP Dashboard",
+    href: "/project/allup",
+    width: 800,
+    height: 600,
+    category: "web",
+  },
+  {
+    id: "finsync",
+    src: "https://picsum.photos/seed/finsync/800/900",
+    alt: "Finsync Mobile",
+    href: "/project/finsync",
+    width: 800,
+    height: 900,
+    category: "app",
+  },
+  {
+    id: "vizio",
+    src: "https://picsum.photos/seed/vizio/800/600",
+    alt: "Vizio Brand",
+    href: "/project/vizio",
+    width: 800,
+    height: 600,
+    category: "other",
+  },
+]
+
+const TABS = [
+  { id: "all",   label: "All"   },
+  { id: "app",   label: "App"   },
+  { id: "web",   label: "Web"   },
+  { id: "other", label: "Other" },
+]
+
 export default function WorksPage() {
+  const [activeTab, setActiveTab] = useState("all")
+
+  const filtered =
+    activeTab === "all"
+      ? ALL_PROJECTS
+      : ALL_PROJECTS.filter((p) => p.category === activeTab)
+
   return (
-    <section className="max-w-5xl mx-auto px-6 py-24">
-      <h1 className="text-3xl font-bold mb-8">Works</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* TODO: map over projects from Notion */}
-        <p className="text-muted-foreground">Projects coming soon...</p>
-      </div>
+    /* id="all" 讓 Sidebar 的 IntersectionObserver 能找到這個區塊 */
+    <section id="all" className="px-6 py-10">
+
+      {/* ── H1 標題 ──────────────────────────────── */}
+      <h1 className="text-2xl font-bold mb-6">Work</h1>
+
+      {/* ── 分類篩選 tabs ─────────────────────────── */}
+      <nav className="flex gap-1 mb-8" aria-label="作品分類">
+        {TABS.map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => setActiveTab(id)}
+            className={cn(
+              "px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
+              activeTab === id
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </nav>
+
+      {/* ── MasonryGrid ──────────────────────────── */}
+      {filtered.length > 0 ? (
+        <MasonryGrid
+          items={filtered}
+          /* Works 頁面右欄已是 2/3 寬，用 2 欄即可，不需要 3 欄 */
+          className="md:columns-2 lg:columns-2"
+        />
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          此分類目前沒有作品。
+        </p>
+      )}
+
     </section>
   )
 }

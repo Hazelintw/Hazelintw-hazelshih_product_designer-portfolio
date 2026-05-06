@@ -15,9 +15,12 @@ import Footer from "@/components/Footer"
  */
 export default function SiteChrome({ children }) {
   const pathname = usePathname()
-  const isProjectPage = pathname.startsWith("/project/")
+  // 這些頁面有自己的兩欄佈局（Navbar 在左欄），不走全域 chrome
+  const hasSplitLayout =
+    pathname.startsWith("/project/") ||
+    pathname.startsWith("/works")
 
-  if (isProjectPage) {
+  if (hasSplitLayout) {
     // Project 頁面：只渲染 children，不加任何外殼
     return <>{children}</>
   }
