@@ -12,29 +12,48 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
 
 const navLinks = [
-  { href: "/works", label: "Works" },
-  { href: "/about", label: "About" },
+  { href: "/works",  label: "Works"  },
+  { href: "/about",  label: "About"  },
   { href: "/resume", label: "Resume" },
 ]
 
-export default function Navbar() {
+/**
+ * Navbar
+ *
+ * Props:
+ *  - isStatic {boolean}  預設 false（fixed 全寬）
+ *                        true → 一般 in-flow 元素，用於 Project Detail 左欄
+ */
+export default function Navbar({ isStatic = false }) {
   const pathname = usePathname()
-  const [lang, setLang] = useState("zh") // "zh" | "en"
+  const [lang, setLang] = useState("zh")
 
   function isActive(href) {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur border-b">
-      <nav className="max-w-5xl mx-auto flex items-center justify-between px-6 h-14">
-
+    <header
+      className={cn(
+        "bg-background border-b",
+        isStatic
+          ? "relative"                                          // 左欄內：正常流
+          : "fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur" // 全域：fixed
+      )}
+    >
+      <nav
+        className={cn(
+          "flex items-center justify-between h-14",
+          isStatic ? "px-5" : "max-w-5xl mx-auto px-6"         // 左欄不需置中限寬
+        )}
+      >
         {/* ── Left：Avatar / Logo ─────────────────────── */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="flex size-8 rounded-full bg-muted items-center justify-center overflow-hidden ring-2 ring-border">
-            {/* TODO: replace src with real avatar */}
+            {/* TODO: replace with real avatar <Image> */}
             <svg viewBox="0 0 32 32" className="size-full text-muted-foreground" fill="currentColor">
               <circle cx="16" cy="12" r="6" />
               <ellipse cx="16" cy="26" rx="10" ry="6" />
@@ -42,8 +61,16 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* ── Center：nav links（desktop）────────────── */}
-        <ul className="hidden md:flex items-center gap-7 text-sm font-medium absolute left-1/2 -translate-x-1/2">
+        {/* ── Center：nav links（desktop）
+              全域版：absolute 置中於 header
+              左欄版：正常 flex 流，讓三個連結自然居中
+        ─────────────────────────────────────────────── */}
+        <ul
+          className={cn(
+            "hidden md:flex items-center gap-6 text-sm font-medium",
+            !isStatic && "absolute left-1/2 -translate-x-1/2"
+          )}
+        >
           {navLinks.map(({ href, label }) => (
             <li key={href}>
               <Link
@@ -103,8 +130,6 @@ export default function Navbar() {
               <SheetHeader>
                 <SheetTitle className="sr-only">導覽選單</SheetTitle>
               </SheetHeader>
-
-              {/* Mobile nav links */}
               <ul className="flex flex-col gap-1 px-4 mt-4">
                 {navLinks.map(({ href, label }) => (
                   <li key={href}>
@@ -121,8 +146,6 @@ export default function Navbar() {
                   </li>
                 ))}
               </ul>
-
-              {/* Mobile lang toggle */}
               <div className="flex items-center gap-1 rounded-md border w-fit px-1 py-0.5 text-xs font-medium mx-4 mt-6">
                 <button
                   onClick={() => setLang("zh")}
