@@ -8,9 +8,10 @@ import { Separator } from "@/components/ui/separator"
 import { useLeftPanelLinks } from "@/lib/left-panel-context"
 
 const NAV_LINKS = [
-  { href: "/works",  label: "Works"  },
-  { href: "/about",  label: "About"  },
-  { href: "/resume", label: "Resume" },
+  { href: "/works",      label: "Works"      },
+  { href: "/about",      label: "About"      },
+  { href: "/playground", label: "Playground" },
+  { href: "/resume",     label: "Resume"     },
 ]
 
 /**
