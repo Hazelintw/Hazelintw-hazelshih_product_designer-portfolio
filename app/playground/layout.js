@@ -14,31 +14,15 @@ const NAV_LINKS = [
 
 function TopNavbar() {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
   const [lang, setLang] = useState("zh")
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 8)
-    }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
 
   function isNavActive(href) {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-200",
-        scrolled
-          ? "border-b bg-background/80 backdrop-blur-md"
-          : "bg-background"
-      )}
-    >
-      <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="sticky top-0 z-50 flex justify-center px-6 pt-4 pb-2">
+      <div className="w-full max-w-[800px] bg-background rounded-2xl shadow-md border px-4 h-13 flex items-center justify-between">
 
         {/* 左側：頭像 Logo */}
         <Link href="/" className="shrink-0">
@@ -102,7 +86,7 @@ function TopNavbar() {
 
 export default function PlaygroundLayout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col">
       <TopNavbar />
       <main className="flex-1">
         {children}
