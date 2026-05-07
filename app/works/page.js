@@ -3,6 +3,14 @@
 import { useState } from "react"
 import MasonryGrid from "@/components/MasonryGrid"
 import { cn } from "@/lib/utils"
+import { SetPanelLinks } from "@/lib/left-panel-context"
+
+const WORKS_LINKS = [
+  { id: "all",   label: "All"   },
+  { id: "app",   label: "App"   },
+  { id: "web",   label: "Web"   },
+  { id: "other", label: "Other" },
+]
 
 /* ── 假資料（之後換成 Notion API） ──────────────────────
    圖片使用 picsum.photos placeholder，seed 固定讓圖片不每次變動
@@ -63,8 +71,8 @@ export default function WorksPage() {
       : ALL_PROJECTS.filter((p) => p.category === activeTab)
 
   return (
-    /* id="all" 讓 Sidebar 的 IntersectionObserver 能找到這個區塊 */
     <section id="all" className="px-6 py-10">
+      <SetPanelLinks links={WORKS_LINKS} />
 
       {/* ── H1 標題 ──────────────────────────────── */}
       <h1 className="text-2xl font-bold mb-6">Work</h1>

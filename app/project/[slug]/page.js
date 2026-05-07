@@ -2,6 +2,13 @@ import Image from "next/image"
 import ProjectBadge from "@/components/Badge"
 import Footer from "@/components/Footer"
 import { cn } from "@/lib/utils"
+import { SetPanelLinks } from "@/lib/left-panel-context"
+
+const PROJECT_LINKS = [
+  { id: "overview",  label: "Overview"  },
+  { id: "situation", label: "Situation" },
+  { id: "design",    label: "Design"    },
+]
 
 /* ── 假資料（之後換成 Notion API） ─────────────────────── */
 const PROJECT = {
@@ -26,6 +33,8 @@ export default async function ProjectPage({ params }) {
 
   return (
     <>
+      <SetPanelLinks links={PROJECT_LINKS} />
+
       {/* ════════════════════════════════════════════
           1. HeroSection
           左：產品名 + H1 + body + badges

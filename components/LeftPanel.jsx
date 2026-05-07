@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
+import { useLeftPanelLinks } from "@/lib/left-panel-context"
 
 const NAV_LINKS = [
   { href: "/works",  label: "Works"  },
@@ -13,18 +14,28 @@ const NAV_LINKS = [
 ]
 
 /**
- * LeftPanel — 整合式左側固定面板（取代 Navbar + Sidebar）
+ * LeftPanel — 整合式左側固定面板
+ *
+ * anchor links 由各頁面透過 <SetPanelLinks> 注入 Context，
+ * 這裡從 Context 讀取，不接受 links prop。
  *
  * Props:
- *  - links      { id, label }[]  anchor 導覽，沒傳入就不顯示
- *  - className                   額外 className
+ *  - className  額外 className
  */
-export default function LeftPanel({ links = [], className }) {
-  const pathname  = usePathname()
-  const [lang, setLang]       = useState("zh")
-  const [activeId, setActiveId] = useState(links[0]?.id ?? "")
+export default function LeftPanel({ className }) {
+  const pathname = usePathname()
+  const [lang, setLang] = useState("zh")
+  const [activeId, setActiveId] = useState("")
   const clickedRef = useRef(false)
   const timerRef   = useRef(null)
+
+  // 從 Context 取得當前頁面注入的 links
+  const { links } = useLeftPanelLinks()
+
+  // links 切換頁面後重置 activeId
+  useEffect(() => {
+    setActiveId(links[0]?.id ?? "")
+  }, [links])
 
   /* ── IntersectionObserver：偵測目前可見 anchor 區塊 ── */
   useEffect(() => {
@@ -60,7 +71,7 @@ export default function LeftPanel({ links = [], className }) {
     timerRef.current = setTimeout(() => { clickedRef.current = false }, 800)
   }
 
-  function isActive(href) {
+  function isNavActive(href) {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
@@ -76,7 +87,7 @@ export default function LeftPanel({ links = [], className }) {
     >
       {/* ── 1. 頭像 Logo ─────────────────────────────── */}
       <div className="px-6 pt-6 pb-4">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/">
           <span className="flex size-10 rounded-full bg-muted items-center justify-center overflow-hidden ring-2 ring-border shrink-0">
             {/* TODO: 換成真實 <Image> */}
             <svg viewBox="0 0 32 32" className="size-full text-muted-foreground" fill="currentColor">
@@ -96,7 +107,7 @@ export default function LeftPanel({ links = [], className }) {
                 href={href}
                 className={cn(
                   "block rounded-md px-2 py-1.5 text-sm font-medium transition-colors",
-                  isActive(href)
+                  isNavActive(href)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
@@ -137,7 +148,7 @@ export default function LeftPanel({ links = [], className }) {
         </div>
       </div>
 
-      {/* ── 4. Anchor 導覽區（選填）─────────────────── */}
+      {/* ── 4. Anchor 導覽區（由頁面透過 Context 注入）── */}
       {links.length > 0 && (
         <>
           <Separator />

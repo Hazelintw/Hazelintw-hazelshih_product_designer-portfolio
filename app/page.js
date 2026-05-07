@@ -1,6 +1,13 @@
+import { SetPanelLinks } from "@/lib/left-panel-context"
 import ProjectCard from "@/components/ProjectCard"
 import TimelineList from "@/components/TimelineList"
 import ProjectBadge from "@/components/Badge"
+
+const HOME_LINKS = [
+  { id: "works",      label: "Works"        },
+  { id: "experience", label: "Experience"   },
+  { id: "ai",         label: "How I use AI" },
+]
 
 /* ── 假資料 ─────────────────────────────────────────── */
 
@@ -36,6 +43,7 @@ const EXPERIENCE = [
 export default function HomePage() {
   return (
     <div className="max-w-2xl mx-auto px-6 pt-28 pb-24 flex flex-col gap-16">
+      <SetPanelLinks links={HOME_LINKS} />
 
       {/* ── Section Label ─── */}
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
