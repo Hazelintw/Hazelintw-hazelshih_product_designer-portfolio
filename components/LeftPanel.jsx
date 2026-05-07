@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
-import { ExternalLink, Globe } from "lucide-react"
+import { ExternalLink, Globe, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { useLeftPanelLinks } from "@/lib/left-panel-context"
@@ -221,22 +221,23 @@ export default function LeftPanel({ className }) {
             {/* Anchor 導覽 */}
             {links.length > 0 && (
               <nav className={cn(
-                (_showButton || _showText || ctxTitle) && "mt-5"
+                (_showButton || _showText || isHome || ctxTitle) && "mt-5"
               )}>
-                <ul className="flex flex-col gap-0.5">
+                <ul className="flex flex-col divide-y">
                   {links.map(({ id, label }) => (
                     <li key={id}>
                       <a
                         href={`#${id}`}
                         onClick={(e) => handleAnchorClick(e, id)}
                         className={cn(
-                          "flex items-center gap-2 pl-3 py-2 text-sm transition-colors",
+                          "flex items-center gap-3 py-3 text-sm font-medium transition-colors",
                           activeId === id
-                            ? "border-l-2 border-current font-medium text-foreground pl-[10px]"
+                            ? "text-orange-500"
                             : "text-muted-foreground hover:text-foreground"
                         )}
                       >
                         {label}
+                        <ArrowRight className="size-3.5 shrink-0" />
                       </a>
                     </li>
                   ))}
