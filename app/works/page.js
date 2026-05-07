@@ -3,7 +3,6 @@
 import { useState } from "react"
 import MasonryGrid from "@/components/MasonryGrid"
 import FilterTabs from "@/components/FilterTabs"
-import { SetPanelLinks } from "@/lib/left-panel-context"
 
 const TABS = [
   { id: "all",   label: "All"   },
@@ -65,8 +64,6 @@ export default function WorksPage() {
 
   return (
     <section className="px-6 py-10">
-      <SetPanelLinks title="Works" showHero showFooter />
-
       <h1 className="text-2xl font-bold mb-6">Work</h1>
 
       <FilterTabs tabs={TABS} value={activeTab} onChange={setActiveTab} />
