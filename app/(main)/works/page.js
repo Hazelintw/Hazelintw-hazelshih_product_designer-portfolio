@@ -65,7 +65,7 @@ export default function WorksPage() {
 
   return (
     <section className="px-6 py-10">
-      <SetPanelLinks showHero showFooter />
+      <SetPanelLinks title="Works" showHero showFooter />
 
       <h1 className="text-2xl font-bold mb-6">Work</h1>
 

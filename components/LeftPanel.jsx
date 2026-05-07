@@ -34,7 +34,7 @@ export default function LeftPanel({ showHero, showFooter, className }) {
   const pathname = usePathname()
   const isHome = pathname === "/"
 
-  const { links, showHero: ctxShowHero, showFooter: ctxShowFooter } = useLeftPanelLinks()
+  const { links, title: ctxTitle, showHero: ctxShowHero, showFooter: ctxShowFooter } = useLeftPanelLinks()
 
   // 優先順序：props → context → pathname fallback
   const _showHero   = showHero   ?? ctxShowHero   ?? isHome
@@ -166,10 +166,18 @@ export default function LeftPanel({ showHero, showFooter, className }) {
 
       </div>
 
-      {/* ── 2. Hero（只在 Homepage 顯示）──────────────── */}
+      {/* ── 2. Title + Hero ───────────────────────────── */}
+      {(ctxTitle || _showHero) && <Separator />}
+
+      {/* Title（有傳入時顯示） */}
+      {ctxTitle && (
+        <div className="px-6 pt-8 pb-0">
+          <h1 className="text-2xl font-bold">{ctxTitle}</h1>
+        </div>
+      )}
+
       {_showHero && (
         <>
-          <Separator />
           <div className="px-6 py-8 flex flex-col gap-4">
             <h1 className="text-xl font-bold leading-snug">
               Hi, I'm [Name] — a Product Designer crafting thoughtful digital experiences.

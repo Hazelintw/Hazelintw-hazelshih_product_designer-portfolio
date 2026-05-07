@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }) {
 
   return (
     <>
-      <SetPanelLinks links={PROJECT_LINKS} />
+      <SetPanelLinks links={PROJECT_LINKS} title={p.productName} />
 
       {/* ════════════════════════════════════════════
           1. HeroSection
