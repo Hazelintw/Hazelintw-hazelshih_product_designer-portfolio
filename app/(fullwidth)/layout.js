@@ -1,6 +1,6 @@
 import TopNav from "@/components/TopNav"
 
-export default function WorksLayout({ children }) {
+export default function FullwidthLayout({ children }) {
   return (
     <div className="w-full min-h-screen flex flex-col">
       <TopNav />
