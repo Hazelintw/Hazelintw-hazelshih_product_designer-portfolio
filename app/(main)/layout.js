@@ -10,7 +10,7 @@ export default function MainLayout({ children }) {
         <div className="md:hidden">
           <TopNav />
         </div>
-        <div className="px-5 md:px-10 pt-12 pb-16">
+        <div className="px-5 md:px-10 pb-16">
           {children}
         </div>
       </div>

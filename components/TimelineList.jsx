@@ -75,14 +75,14 @@ function TimelineItem({ item }) {
             )}
           </div>
 
-          {/* ── 公司名稱 + 職稱 ───────────────────────── */}
-          <div className="flex flex-col gap-0.5 text-left">
-            <span className="text-sm font-medium leading-tight">{company}</span>
-            <span className="text-xs text-muted-foreground leading-tight">{role}</span>
-          </div>
+          {/* ── 公司名稱 ───────────────────────────────── */}
+          <span className="text-sm font-medium leading-tight">{company}</span>
+
+          {/* ── 職稱 ───────────────────────────────────── */}
+          <span className="text-xs text-muted-foreground leading-tight">{role}</span>
 
           {/* ── 年份（推到右側）─────────────────────── */}
-          <span className="ml-auto text-xs text-muted-foreground tabular-nums">
+          <span className="ml-auto text-xs text-muted-foreground tabular-nums shrink-0">
             {period}
           </span>
         </div>

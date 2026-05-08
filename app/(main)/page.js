@@ -42,30 +42,6 @@ const PROJECTS = [
   },
 ]
 
-const MINI_CARDS = [
-  {
-    href: "/works",
-    category: "APP名稱",
-    title: "AI Chatbot",
-    badges: ["UI", "UX"],
-    image: "https://picsum.photos/seed/chatbot/400/300",
-  },
-  {
-    href: "/works",
-    category: "APP名稱",
-    title: "mangem..",
-    badges: ["UI", "UX"],
-    image: "https://picsum.photos/seed/mangem/400/300",
-  },
-  {
-    href: "/works",
-    category: "APP名稱",
-    title: "All works",
-    badges: [],
-    image: null,
-  },
-]
-
 /* ── Experience 假資料 ────────────────────────────────── */
 
 const EXPERIENCE = [
@@ -136,6 +112,24 @@ const AI_ITEMS = [
   },
 ]
 
+/* ── AllWorksCard（inline 元件）──────────────────────── */
+
+function AllWorksCard() {
+  return (
+    <Link href="/works" className="block h-full group">
+      <div className="h-full rounded-xl border bg-card flex flex-col justify-between px-8 py-10 transition-shadow duration-200 hover:shadow-md">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-semibold leading-snug">View all works</h3>
+          <p className="text-sm text-muted-foreground">Web / App / Workshop / Fun stuff</p>
+        </div>
+        <div className="flex justify-end">
+          <ArrowRight className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 /* ── Page ───────────────────────────────────────────── */
 
 export default function HomePage() {
@@ -143,24 +137,22 @@ export default function HomePage() {
     <div className="flex flex-col divide-y">
       <SetPanelLinks links={HOME_LINKS} showText showButton showFooter />
 
-      {/* ══ Section 1：Works ══════════════════════════ */}
-      <SectionLayout id="works" title="Works">
-        <div className="flex flex-col gap-6">
+      {/* ══ Section 1：Works（無 SectionLayout 標題）══ */}
+      <div id="works" className="flex flex-col gap-5 py-10">
 
-          {/* 三張大 ProjectCard */}
-          {PROJECTS.map((p) => (
-            <ProjectCard key={p.slug} {...p} />
-          ))}
+        {/* 前兩張：全寬 */}
+        <ProjectCard {...PROJECTS[0]} />
+        <ProjectCard {...PROJECTS[1]} />
 
-          {/* 底部一排三個 MiniCard */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
-            {MINI_CARDS.map((c) => (
-              <MiniCard key={c.title} {...c} />
-            ))}
+        {/* 第三排：左 2/3 ProjectCard + 右 1/3 AllWorksCard */}
+        <div className="grid grid-cols-3 gap-5 items-stretch h-[320px]">
+          <div className="col-span-2">
+            <ProjectCard {...PROJECTS[2]} className="h-full" />
           </div>
-
+          <AllWorksCard />
         </div>
-      </SectionLayout>
+
+      </div>
 
       {/* ══ Section 2：Experience ═════════════════════ */}
       <SectionLayout
@@ -184,11 +176,11 @@ export default function HomePage() {
         title="How I use AI"
         subtitle="AI seems inevitable, here's how I'm attempting to use it ethically and proactively."
       >
-        <div className="flex flex-col">
+        {/* divide-y 自動在子元素之間加分隔線，首尾不加 */}
+        <div className="flex flex-col divide-y">
           {AI_ITEMS.map((item) => (
             <AIUsageItem key={item.title} {...item} />
           ))}
-          <div className="border-t" />
         </div>
       </SectionLayout>
 
