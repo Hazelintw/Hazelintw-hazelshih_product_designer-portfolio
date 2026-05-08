@@ -134,11 +134,11 @@ function AllWorksCard() {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col divide-y">
+    <div className="flex flex-col gap-16">
       <SetPanelLinks links={HOME_LINKS} showText showButton showFooter />
 
       {/* ══ Section 1：Works（無 SectionLayout 標題）══ */}
-      <div id="works" className="flex flex-col gap-5 py-10">
+      <div id="works" className="flex flex-col gap-5">
 
         {/* 前兩張：全寬 */}
         <ProjectCard {...PROJECTS[0]} />

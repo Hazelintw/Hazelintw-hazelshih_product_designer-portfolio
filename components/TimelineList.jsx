@@ -51,7 +51,7 @@ function TimelineItem({ item }) {
     >
       <AccordionTrigger
         className={cn(
-          "py-3 hover:no-underline",
+          "py-3 hover:no-underline items-center",
           !hasContent && "cursor-default [&>svg]:hidden"
         )}
       >

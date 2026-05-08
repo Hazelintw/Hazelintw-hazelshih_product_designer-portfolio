@@ -10,7 +10,7 @@
  */
 export default function SectionLayout({ id, title, subtitle, children, className }) {
   return (
-    <section id={id} className={`flex flex-col md:flex-row gap-8 py-10 ${className ?? ""}`}>
+    <section id={id} className={`flex flex-col md:flex-row gap-8 ${className ?? ""}`}>
 
       {/* 左欄：標題 + 副標題，固定寬度，靠上對齊 */}
       <div className="w-full md:w-[180px] shrink-0">
