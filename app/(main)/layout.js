@@ -16,7 +16,7 @@ export default function MainLayout({ children }) {
         </div>
 
         {/* 主內容區 */}
-        <div className="flex-1 min-w-0">
+        <div className="w-full max-w-3xl mx-auto px-6 pt-12">
           {children}
         </div>
       </div>
