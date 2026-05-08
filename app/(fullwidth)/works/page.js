@@ -63,7 +63,7 @@ export default function WorksPage() {
       : ALL_PROJECTS.filter((p) => p.category === activeTab)
 
   return (
-    <section className="px-6 py-10">
+    <section>
       <h1 className="text-2xl font-bold mb-6">Work</h1>
 
       <FilterTabs tabs={TABS} value={activeTab} onChange={setActiveTab} />
@@ -72,7 +72,7 @@ export default function WorksPage() {
         {filtered.length > 0 ? (
           <MasonryGrid
             items={filtered}
-            className="md:columns-2 lg:columns-2"
+            className="columns-1 md:columns-1 lg:columns-2"
           />
         ) : (
           <p className="text-sm text-muted-foreground">此分類目前沒有作品。</p>

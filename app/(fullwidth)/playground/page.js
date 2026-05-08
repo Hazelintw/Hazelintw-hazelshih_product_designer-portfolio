@@ -76,14 +76,14 @@ export default function PlaygroundPage() {
       : ALL_ITEMS.filter((item) => item.category === activeTab)
 
   return (
-    <section className="max-w-5xl mx-auto px-6 py-10">
+    <section>
       <h1 className="text-2xl font-bold mb-6">Playground</h1>
 
       <FilterTabs tabs={TABS} value={activeTab} onChange={setActiveTab} />
 
       <div className="mt-5">
         {filtered.length > 0 ? (
-          <MasonryGrid items={filtered} className="md:columns-3 lg:columns-4" />
+          <MasonryGrid items={filtered} className="columns-1 md:columns-2 lg:columns-3" />
         ) : (
           <p className="text-sm text-muted-foreground">此分類目前沒有作品。</p>
         )}
