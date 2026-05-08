@@ -7,6 +7,8 @@ import { ExternalLink, Globe, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { useLeftPanelLinks } from "@/lib/left-panel-context"
+import { NAV_LINKS } from "@/lib/nav-links"
+import LangToggle from "@/components/LangToggle"
 
 /* ── 可編輯變數 ──────────────────────────────────────── */
 const RESUME_URL    = ""
@@ -15,12 +17,6 @@ const CONTACT_EMAIL = ""
 const HERO_TITLE    = "Hello! I'm Hazel. Product designer 4+ years"
 const HERO_TEXT     = "（placeholder 個人描述文字）"
 /* ──────────────────────────────────────────────────── */
-
-const NAV_LINKS = [
-  { href: "/about",      label: "About"      },
-  { href: "/works",      label: "Works"      },
-  { href: "/playground", label: "Playground" },
-]
 
 /**
  * LeftPanel — 整合式左側固定面板
@@ -48,7 +44,6 @@ export default function LeftPanel({ className }) {
   const _showButton  = ctxShowButton ?? isHome
   const _showFooter  = ctxShowFooter ?? isHome
 
-  const [lang, setLang]       = useState("zh")
   const [activeId, setActiveId] = useState("")
   const clickedRef = useRef(false)
   const timerRef   = useRef(null)
@@ -146,27 +141,7 @@ export default function LeftPanel({ className }) {
         </div>
 
         {/* 語言切換（xl 以上才顯示） */}
-        <div className="hidden xl:flex items-center gap-0.5 rounded-md border px-1 py-0.5 text-xs font-medium shrink-0">
-          <button
-            onClick={() => setLang("zh")}
-            className={cn(
-              "px-1 py-0.5 rounded transition-colors",
-              lang === "zh" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            中
-          </button>
-          <span className="text-border select-none">|</span>
-          <button
-            onClick={() => setLang("en")}
-            className={cn(
-              "px-1 py-0.5 rounded transition-colors",
-              lang === "en" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            En
-          </button>
-        </div>
+        <LangToggle className="hidden xl:flex" />
 
       </div>
 

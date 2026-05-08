@@ -2,18 +2,12 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
 import { cn } from "@/lib/utils"
-
-const NAV_LINKS = [
-  { href: "/about",      label: "About"      },
-  { href: "/works",      label: "Works"      },
-  { href: "/playground", label: "Playground" },
-]
+import { NAV_LINKS } from "@/lib/nav-links"
+import LangToggle from "@/components/LangToggle"
 
 export default function TopNav() {
   const pathname = usePathname()
-  const [lang, setLang] = useState("zh")
 
   function isNavActive(href) {
     return pathname === href || pathname.startsWith(href + "/")
@@ -58,31 +52,7 @@ export default function TopNav() {
         </div>
 
         {/* 右側：中 / En 切換（xl 以上才顯示） */}
-        <div className="hidden xl:flex items-center gap-1 rounded-md border px-1 py-0.5 text-xs font-medium">
-          <button
-            onClick={() => setLang("zh")}
-            className={cn(
-              "px-1.5 py-0.5 rounded transition-colors",
-              lang === "zh"
-                ? "bg-foreground text-background"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            中
-          </button>
-          <span className="text-border select-none">|</span>
-          <button
-            onClick={() => setLang("en")}
-            className={cn(
-              "px-1.5 py-0.5 rounded transition-colors",
-              lang === "en"
-                ? "bg-foreground text-background"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            En
-          </button>
-        </div>
+        <LangToggle className="hidden xl:flex" />
 
       </div>
     </header>
