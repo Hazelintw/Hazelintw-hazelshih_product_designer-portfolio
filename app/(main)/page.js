@@ -47,14 +47,14 @@ const MINI_CARDS = [
     href: "/works",
     category: "APP名稱",
     title: "AI Chatbot",
-    badges: ["tag", "tag"],
+    badges: ["UI", "UX"],
     image: "https://picsum.photos/seed/chatbot/400/300",
   },
   {
     href: "/works",
     category: "APP名稱",
     title: "mangem..",
-    badges: ["tag", "tag"],
+    badges: ["UI", "UX"],
     image: "https://picsum.photos/seed/mangem/400/300",
   },
   {
