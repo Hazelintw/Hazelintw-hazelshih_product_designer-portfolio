@@ -16,7 +16,7 @@ export default function SectionLayout({ id, title, subtitle, children, className
       <div className="w-full md:w-[180px] shrink-0">
         <h2 className="text-sm font-semibold">{title}</h2>
         {subtitle && (
-          <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>
+          <div className="mt-1 text-xs text-muted-foreground">{subtitle}</div>
         )}
       </div>
 
