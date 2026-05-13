@@ -6,9 +6,11 @@ import ProjectCard from "@/components/ProjectCard"
 import MiniCard from "@/components/MiniCard"
 import TimelineList from "@/components/TimelineList"
 import AIUsageItem from "@/components/AIUsageItem"
+import SectionCTA from "@/components/SectionCTA"
 
 const HOME_LINKS = [
   { id: "works",      label: "Works"        },
+  { id: "kind-words", label: "Kind Words"   },
   { id: "experience", label: "Experience"   },
   { id: "ai",         label: "How I use AI" },
 ]
@@ -112,6 +114,32 @@ const AI_ITEMS = [
   },
 ]
 
+/* ── Kind Words 假資料 ───────────────────────────────── */
+
+const KIND_WORDS = [
+  {
+    id: "kw-1",
+    name: "Alex Chen",
+    jobTitle: "Engineering Lead @ Iverson",
+    quote:
+      "與 Hazel 合作是一次非常愉快的經驗。她不只是一位設計師，更是能夠深入理解產品需求、主動推動問題解決的夥伴。她的設計思路清晰，能夠在美感與可用性之間取得絕佳平衡，並且總是能夠以清楚的邏輯說明設計決策背後的依據，讓開發團隊的溝通效率大幅提升。",
+  },
+  {
+    id: "kw-2",
+    name: "Sarah Lin",
+    jobTitle: "Product Manager @ allUP",
+    quote:
+      "Hazel 有著出色的溝通能力與同理心，能夠快速理解不同利害關係人的需求，並把複雜的問題轉化成清晰的設計方案。",
+  },
+  {
+    id: "kw-3",
+    name: "Jason Wu",
+    jobTitle: "CEO @ Finsync",
+    quote:
+      "她對細節的要求與對品牌一致性的堅持，讓整個產品呈現出極高的質感。",
+  },
+]
+
 /* ── MiniCard 假資料 ──────────────────────────────────── */
 
 const MINI_ITEMS = [
@@ -155,7 +183,74 @@ export default function HomePage() {
 
       </div>
 
-      {/* ══ Section 2：Experience ═════════════════════ */}
+      {/* ══ Section 2：Kind Words ════════════════════ */}
+      <SectionLayout
+        id="kind-words"
+        title="Kind Words"
+        subtitle="設計是需要高度協作的工作，感謝每一位夥伴給予的回饋！"
+      >
+        {/* Bento Grid */}
+        <div className="grid grid-cols-2 gap-4">
+
+          {/* 卡片 1：全寬，長段評語 */}
+          <div className="col-span-2 rounded-xl border bg-card p-6 flex flex-col gap-4">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              &ldquo;{KIND_WORDS[0].quote}&rdquo;
+            </p>
+            <div className="flex items-center gap-3 mt-auto">
+              <span className="flex size-9 rounded-full bg-muted shrink-0 ring-1 ring-border" />
+              <div>
+                <p className="text-sm font-semibold leading-none">{KIND_WORDS[0].name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{KIND_WORDS[0].jobTitle}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 卡片 2：1/2 寬，短段評語 */}
+          <div className="col-span-1 rounded-xl border bg-card p-6 flex flex-col gap-4">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              &ldquo;{KIND_WORDS[1].quote}&rdquo;
+            </p>
+            <div className="flex items-center gap-3 mt-auto">
+              <span className="flex size-9 rounded-full bg-muted shrink-0 ring-1 ring-border" />
+              <div>
+                <p className="text-sm font-semibold leading-none">{KIND_WORDS[1].name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{KIND_WORDS[1].jobTitle}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 卡片 3：1/2 寬，短段評語 + 右側裝飾色塊 */}
+          <div className="col-span-1 rounded-xl border bg-card p-6 flex gap-4 overflow-hidden">
+            <div className="flex flex-col gap-4 flex-1 min-w-0">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                &ldquo;{KIND_WORDS[2].quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-3 mt-auto">
+                <span className="flex size-9 rounded-full bg-muted shrink-0 ring-1 ring-border" />
+                <div>
+                  <p className="text-sm font-semibold leading-none">{KIND_WORDS[2].name}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{KIND_WORDS[2].jobTitle}</p>
+                </div>
+              </div>
+            </div>
+            {/* 裝飾色塊 */}
+            <div className="w-16 shrink-0 rounded-lg bg-muted self-stretch" />
+          </div>
+
+        </div>
+      </SectionLayout>
+
+      {/* ══ CTA：Learn more About me ══════════════════ */}
+      <SectionCTA
+        title="Learn more"
+        italic="About me."
+        subtitle="I'd like to share what I"
+        italicSub="Love."
+        href="/about"
+      />
+
+      {/* ══ Section 3：Experience ═════════════════════ */}
       <SectionLayout
         id="experience"
         title="Experience"
