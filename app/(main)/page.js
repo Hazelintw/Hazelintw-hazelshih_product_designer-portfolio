@@ -179,11 +179,13 @@ export default function HomePage() {
           ))}
         </div>
 
+        <div id="kind-words" />
+
       </div>
 
       {/* ══ Section 2：Kind Words ════════════════════ */}
+      <div className="rounded-2xl bg-muted p-5 flex flex-col gap-5">
       <SectionLayout
-        id="kind-words"
         title="Kind Words"
         subtitle="設計是需要高度協作的工作，感謝每一位夥伴給予的回饋！"
         vertical
@@ -239,6 +241,7 @@ export default function HomePage() {
 
         </div>
       </SectionLayout>
+      </div>
 
       {/* ══ CTA：Learn more About me ══════════════════ */}
       <SectionCTA
