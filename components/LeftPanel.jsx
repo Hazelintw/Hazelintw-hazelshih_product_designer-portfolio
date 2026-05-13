@@ -7,8 +7,13 @@ import { ExternalLink, Globe, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { useLeftPanelLinks } from "@/lib/left-panel-context"
-import { NAV_LINKS } from "@/lib/nav-links"
-import LangToggle from "@/components/LangToggle"
+import LangDropdown from "@/components/LangDropdown"
+
+/* LeftPanel Navbar 專用連結（與 TopNav 一致） */
+const PANEL_NAV_LINKS = [
+  { href: "/#works", label: "Works",  activeOn: "/" },
+  { href: "/about",  label: "About",  activeOn: "/about" },
+]
 
 /* ── 可編輯變數 ──────────────────────────────────────── */
 const RESUME_URL    = ""
@@ -82,8 +87,8 @@ export default function LeftPanel({ className }) {
     timerRef.current = setTimeout(() => { clickedRef.current = false }, 800)
   }
 
-  function isNavActive(href) {
-    return pathname === href || pathname.startsWith(href + "/")
+  function isNavActive(activeOn) {
+    return pathname === activeOn || pathname.startsWith(activeOn + "/")
   }
 
   const hasContent = ctxTitle || _showText || _showButton || links.length > 0
@@ -119,7 +124,7 @@ export default function LeftPanel({ className }) {
 
           {/* 導覽連結（斜槓分隔） */}
           <nav className="flex items-center gap-1 text-sm min-w-0">
-            {NAV_LINKS.map(({ href, label }, i) => (
+            {PANEL_NAV_LINKS.map(({ href, label, activeOn }, i) => (
               <span key={href} className="flex items-center gap-1">
                 {i > 0 && (
                   <span className="text-muted-foreground/40 select-none">/</span>
@@ -128,7 +133,7 @@ export default function LeftPanel({ className }) {
                   href={href}
                   className={cn(
                     "font-medium transition-colors whitespace-nowrap",
-                    isNavActive(href)
+                    isNavActive(activeOn)
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   )}
@@ -140,8 +145,8 @@ export default function LeftPanel({ className }) {
           </nav>
         </div>
 
-        {/* 語言切換（xl 以上才顯示） */}
-        <LangToggle className="hidden xl:flex" />
+        {/* 語言切換 */}
+        <LangDropdown />
 
       </div>
 
