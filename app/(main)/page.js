@@ -186,6 +186,7 @@ export default function HomePage() {
         id="kind-words"
         title="Kind Words"
         subtitle="設計是需要高度協作的工作，感謝每一位夥伴給予的回饋！"
+        vertical
       >
         {/* Bento Grid */}
         <div className="grid grid-cols-2 gap-4">
@@ -251,6 +252,7 @@ export default function HomePage() {
       {/* ══ Section 3：Experience ═════════════════════ */}
       <SectionLayout
         id="experience"
+        className="hidden"
         title="Experience"
         subtitle={
           <Link
@@ -267,6 +269,7 @@ export default function HomePage() {
       {/* ══ Section 3：How I use AI ═══════════════════ */}
       <SectionLayout
         id="ai"
+        className="hidden"
         title="How I use AI"
         subtitle="AI seems inevitable, here's how I'm attempting to use it ethically and proactively."
       >

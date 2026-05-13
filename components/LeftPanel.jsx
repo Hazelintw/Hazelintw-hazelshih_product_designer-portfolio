@@ -19,8 +19,8 @@ const PANEL_NAV_LINKS = [
 const RESUME_URL    = ""
 const LINKEDIN_URL  = ""
 const CONTACT_EMAIL = ""
-const HERO_TITLE    = "Hello! I'm Hazel. Product designer 4+ years"
-const HERO_TEXT     = "（placeholder 個人描述文字）"
+const HERO_TITLE    = "Hello! I’m Hazel.4 年 Product Designer — 重視系統一致性與產品落地"
+const HERO_TEXT     = "專注於複雜產品流程與系統設計。我擅長從模糊需求中整理問題脈絡，平衡使用者需求、商業目標與開發可行性，讓設計能被團隊清楚理解並順利實現"
 /* ──────────────────────────────────────────────────── */
 
 /**
