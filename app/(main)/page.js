@@ -9,10 +9,8 @@ import AIUsageItem from "@/components/AIUsageItem"
 import SectionCTA from "@/components/SectionCTA"
 
 const HOME_LINKS = [
-  { id: "works",      label: "Works"        },
-  { id: "kind-words", label: "Kind Words"   },
-  { id: "experience", label: "Experience"   },
-  { id: "ai",         label: "How I use AI" },
+  { id: "works",      label: "Works"      },
+  { id: "kind-words", label: "Kind Words" },
 ]
 
 /* ── Works 假資料 ─────────────────────────────────────── */
