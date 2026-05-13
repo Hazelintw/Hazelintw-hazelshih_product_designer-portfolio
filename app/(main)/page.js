@@ -112,23 +112,24 @@ const AI_ITEMS = [
   },
 ]
 
-/* ── AllWorksCard（inline 元件）──────────────────────── */
+/* ── MiniCard 假資料 ──────────────────────────────────── */
 
-function AllWorksCard() {
-  return (
-    <Link href="/works" className="block h-full group">
-      <div className="h-full rounded-xl border bg-card flex flex-col justify-between px-8 py-10 transition-shadow duration-200 hover:shadow-md">
-        <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-semibold leading-snug">View all works</h3>
-          <p className="text-sm text-muted-foreground">Web / App / Workshop / Fun stuff</p>
-        </div>
-        <div className="flex justify-end">
-          <ArrowRight className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-        </div>
-      </div>
-    </Link>
-  )
-}
+const MINI_ITEMS = [
+  {
+    href: "/playground/brand-identity",
+    category: "Playground",
+    title: "品牌識別系統探索：從 Moodboard 到 Logo",
+    badges: ["Branding", "Visual"],
+    image: "https://picsum.photos/seed/mini1/800/450",
+  },
+  {
+    href: "/playground/design-system",
+    category: "Playground",
+    title: "個人 Design System：元件庫建立與 Token 定義",
+    badges: ["Design System", "Figma"],
+    image: "https://picsum.photos/seed/mini2/800/450",
+  },
+]
 
 /* ── Page ───────────────────────────────────────────── */
 
@@ -137,19 +138,19 @@ export default function HomePage() {
     <div className="flex flex-col gap-16">
       <SetPanelLinks links={HOME_LINKS} showText showButton showFooter />
 
-      {/* ══ Section 1：Works（無 SectionLayout 標題）══ */}
-      <div id="works" className="flex flex-col gap-5">
+      {/* ══ Section 1：Works ═════════════════════════ */}
+      <div id="works" className="rounded-2xl bg-muted p-5 flex flex-col gap-5">
 
-        {/* 前兩張：全寬 */}
+        {/* 全寬 ProjectCard × 3 */}
         <ProjectCard {...PROJECTS[0]} />
         <ProjectCard {...PROJECTS[1]} />
+        <ProjectCard {...PROJECTS[2]} />
 
-        {/* 第三排：左 2/3 ProjectCard + 右 1/3 AllWorksCard */}
-        <div className="grid grid-cols-3 gap-5 items-stretch h-[320px]">
-          <div className="col-span-2">
-            <ProjectCard {...PROJECTS[2]} className="h-full" />
-          </div>
-          <AllWorksCard />
+        {/* MiniCard × 2，各佔 1/2 */}
+        <div className="grid grid-cols-2 gap-5">
+          {MINI_ITEMS.map((item) => (
+            <MiniCard key={item.href} {...item} />
+          ))}
         </div>
 
       </div>
