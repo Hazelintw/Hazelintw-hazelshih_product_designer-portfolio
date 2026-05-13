@@ -117,24 +117,24 @@ const AI_ITEMS = [
 const KIND_WORDS = [
   {
     id: "kw-1",
-    name: "Alex Chen",
-    jobTitle: "Engineering Lead @ Iverson",
+    name: "Kevin Chen",
+    jobTitle: "Engineering Lead @ Interinfo",
     quote:
-      "與 Hazel 合作是一次非常愉快的經驗。她不只是一位設計師，更是能夠深入理解產品需求、主動推動問題解決的夥伴。她的設計思路清晰，能夠在美感與可用性之間取得絕佳平衡，並且總是能夠以清楚的邏輯說明設計決策背後的依據，讓開發團隊的溝通效率大幅提升。",
+      "與 Hazel 合作是一次非常愉快的經驗。她不只是一位設計師，更是能夠深入理解產品需求、主動推動問題解決的夥伴。她的設計思路清晰，能夠在美感與可用性之間取得絕佳平衡，並且總是能夠以清楚的邏輯說明設計決策背後的依據，讓開發團隊的溝通效率大幅提升",
   },
   {
     id: "kw-2",
-    name: "Sarah Lin",
-    jobTitle: "Product Manager @ allUP",
+    name: "Max huang",
+    jobTitle: "Backend Enginner @ Interinfo",
     quote:
-      "Hazel 有著出色的溝通能力與同理心，能夠快速理解不同利害關係人的需求，並把複雜的問題轉化成清晰的設計方案。",
+      "在英特內時有幸共同參與專案，在工作配合時，會針對模糊的需求，去協助客戶釐清，也可有效的說明其設計目的，並融入客戶的期望，完成專案",
   },
   {
     id: "kw-3",
-    name: "Jason Wu",
-    jobTitle: "CEO @ Finsync",
+    name: "Kai Yen",
+    jobTitle: "Founder @ Rider",
     quote:
-      "她對細節的要求與對品牌一致性的堅持，讓整個產品呈現出極高的質感。",
+      "I've been working closely together with Yu Chuan for the mobile application project——Rider Protector,As the UI designer of the project,shehas always been a team player and a great collaborator.",
   },
 ]
 
@@ -236,7 +236,6 @@ export default function HomePage() {
               </div>
             </div>
             {/* 裝飾色塊 */}
-            <div className="w-16 shrink-0 rounded-lg bg-muted self-stretch" />
           </div>
 
         </div>

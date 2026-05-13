@@ -37,10 +37,13 @@ export default function LeftPanel({ className }) {
 
   const {
     links,
-    title:      ctxTitle,
-    showText:   ctxShowText,
-    showButton: ctxShowButton,
-    showFooter: ctxShowFooter,
+    title:       ctxTitle,
+    text:        ctxText,
+    buttonLabel: ctxButtonLabel,
+    buttonHref:  ctxButtonHref,
+    showText:    ctxShowText,
+    showButton:  ctxShowButton,
+    showFooter:  ctxShowFooter,
   } = useLeftPanelLinks()
 
   // pathname fallback：首頁預設全部顯示
@@ -163,40 +166,44 @@ export default function LeftPanel({ className }) {
               </h1>
             )}
 
-            {/* Body 文字：首頁用 HERO_TEXT */}
-            {_showText && (
-              <p className={cn(
-                "text-sm text-muted-foreground leading-relaxed",
-                (isHome || ctxTitle) && "mt-3"
-              )}>
-                {HERO_TEXT}
-              </p>
-            )}
+            {/* Body 文字：ctx text 優先，首頁 fallback HERO_TEXT；\n\n 換段 */}
+            {_showText && (() => {
+              const body = ctxText ?? (isHome ? HERO_TEXT : null)
+              if (!body) return null
+              const paras = body.split("\n\n")
+              return (
+                <div className={cn(
+                  "flex flex-col gap-2",
+                  (isHome || ctxTitle) && "mt-3"
+                )}>
+                  {paras.map((p, i) => (
+                    <p key={i} className="text-sm text-muted-foreground leading-relaxed">{p}</p>
+                  ))}
+                </div>
+              )
+            })()}
 
-            {/* CTA Button */}
-            {_showButton && (
-              <div className={cn((_showText || ctxTitle) && "mt-3")}>
-                {RESUME_URL ? (
-                  <a
-                    href={RESUME_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-                  >
-                    查看履歷
-                    <ExternalLink className="size-3.5" />
-                  </a>
-                ) : (
-                  <button
-                    disabled
-                    className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background opacity-60 cursor-default"
-                  >
-                    查看履歷
-                    <ExternalLink className="size-3.5" />
-                  </button>
-                )}
-              </div>
-            )}
+            {/* CTA Button：ctx buttonLabel/buttonHref 優先，首頁 fallback RESUME_URL */}
+            {_showButton && (() => {
+              const label = ctxButtonLabel ?? "查看履歷"
+              const href  = ctxButtonHref  ?? RESUME_URL
+              const btnClass = "inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
+              return (
+                <div className={cn((_showText || ctxTitle) && "mt-3")}>
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className={btnClass}>
+                      {label}
+                      <ExternalLink className="size-3.5" />
+                    </a>
+                  ) : (
+                    <button disabled className={cn(btnClass, "opacity-60 cursor-default")}>
+                      {label}
+                      <ExternalLink className="size-3.5" />
+                    </button>
+                  )}
+                </div>
+              )
+            })()}
 
             {/* Anchor 導覽 */}
             {links.length > 0 && (
