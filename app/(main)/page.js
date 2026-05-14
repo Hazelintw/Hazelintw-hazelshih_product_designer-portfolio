@@ -161,7 +161,7 @@ const MINI_ITEMS = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-8">
       <SetPanelLinks links={HOME_LINKS} showText showButton showFooter />
 
       {/* ══ Section 1：Works ═════════════════════════ */}

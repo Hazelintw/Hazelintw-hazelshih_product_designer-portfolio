@@ -61,7 +61,7 @@ const CARD_WRAP = "rounded-2xl bg-muted p-5 flex flex-col gap-5"
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-8">
       <SetPanelLinks
         title="Hazel's Design Values"
         text={ABOUT_TEXT}
