@@ -45,7 +45,11 @@ export default function LangDropdown({ className }) {
       <DropdownMenuContent align="end" sideOffset={6}>
         <DropdownMenuRadioGroup value={lang} onValueChange={setLang}>
           {LANGUAGES.map(({ value, label }) => (
-            <DropdownMenuRadioItem key={value} value={value}>
+            <DropdownMenuRadioItem
+              key={value}
+              value={value}
+              className={value === "en" ? "hidden" : undefined}
+            >
               {label}
             </DropdownMenuRadioItem>
           ))}
