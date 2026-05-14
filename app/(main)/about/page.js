@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
+import { RESUME_URL } from "@/lib/constants"
 import { SetPanelLinks } from "@/lib/left-panel-context"
 import SectionLayout from "@/components/SectionLayout"
 import SectionCTA from "@/components/SectionCTA"
@@ -66,7 +67,7 @@ export default function AboutPage() {
         title="Hazel's Design Values"
         text={ABOUT_TEXT}
         buttonLabel="查看履歷"
-        buttonHref="（請先填入雲端連結）"
+        buttonHref={RESUME_URL}
         showText={true}
         showButton={true}
         showFooter={true}
@@ -87,7 +88,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="mt-5">
-            <a href="#" className={CTA_BTN}>
+            <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className={CTA_BTN}>
               查看履歷
               <ExternalLink className="size-3" />
             </a>

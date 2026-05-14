@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { useLeftPanelLinks } from "@/lib/left-panel-context"
 import LangDropdown from "@/components/LangDropdown"
+import { RESUME_URL, LINKEDIN_URL, CONTACT_EMAIL } from "@/lib/constants"
 
 /* LeftPanel Navbar 專用連結（與 TopNav 一致） */
 const PANEL_NAV_LINKS = [
@@ -16,11 +17,8 @@ const PANEL_NAV_LINKS = [
 ]
 
 /* ── 可編輯變數 ──────────────────────────────────────── */
-const RESUME_URL    = "https://drive.google.com/drive/folders/1ekA1sdhOgzHIPRI2l7-3uN17peCulA6e?usp=sharing"
-const LINKEDIN_URL  = "https://linkedin.com/in/hazel-shih-adesigner"
-const CONTACT_EMAIL = "hazel.shih.design@gmail.com"
-const HERO_TITLE    = "Hello! I’m Hazel.4 年 Product Designer — 重視系統一致性與產品落地"
-const HERO_TEXT     = "專注於複雜產品流程與系統設計。我擅長從模糊需求中整理問題脈絡，平衡使用者需求、商業目標與開發可行性，讓設計能被團隊清楚理解並順利實現"
+const HERO_TITLE = "Hello! I’m Hazel.4 年 Product Designer — 重視系統一致性與產品落地"
+const HERO_TEXT  = "專注於複雜產品流程與系統設計。我擅長從模糊需求中整理問題脈絡，平衡使用者需求、商業目標與開發可行性，讓設計能被團隊清楚理解並順利實現"
 /* ──────────────────────────────────────────────────── */
 
 /**
